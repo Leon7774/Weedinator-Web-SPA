@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEEDINATOR 9000</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body>
+    <h1>WEEDINATOR 9000</h1>
+    <h4>Detects weeds in one click!</h2>
+    <p class="description">
+        The system is trained to classify and detect 22 specific classes of flora, including Oryza sativa (Rice) and various invasive weed species such as Alternanthera philoxeroide and Echinochloa crus-galli. This web-based inference engine serves as the preliminary validation stage for a standalone hardware device intended for automatic weed targeting.
+    </p>
+
+    <div class="container">
+        <div class="control-group">
+            <label for="model-selector">Select Model:</label>
+            <select id="model-selector">
+                <option value="yolo">YOLO (Balanced)</option>
+                <option value="convnext">ConvNeXt (High Accuracy)</option>
+                <option value="resnet">ResNet-50 (High Speed)</option>
+            </select>
+        </div>
+        <div class="upload-area" id="drop-zone">
+            <p>Click or drag image here to upload</p>
+            <input type="file" id="file-input" accept="image/*">
+        </div>
+
+        <button id="predict-btn" class="btn" disabled>Run Detection</button>
+
+        <div id="result-container">
+            <img id="result-image" alt="Detection Result">
+        </div>
+    </div>
+
+    <div class="metrics-container">
+        <h3>Model Performance Metrics</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>mAP-50</th>
+                    <th>Inference Speed</th>
+                    <th>Characteristics</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ConvNeXt</td>
+                    <td>0.805</td>
+                    <td>~180ms</td>
+                    <td>Highest Accuracy</td>
+                </tr>
+                <tr>
+                    <td>ResNet-50</td>
+                    <td>0.742</td>
+                    <td>5.57 FPS (~179ms)</td>
+                    <td>Fastest Inference</td>
+                </tr>
+                 <tr>
+                    <td>YOLO</td>
+                    <td>0.780</td>
+                    <td>~150ms</td>
+                    <td>Balanced</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="note">
+            Results demonstrate that ConvNeXt achieves the highest detection performance, while ResNet-50 offers robust inference speed, establishing key trade-offs for real-time edge deployment.
+        </p>
+
+        <div id="json-output-container" style="display: none; margin-top: 1.5rem;">
+            <h3>Raw Detection Output</h3>
+            <pre id="json-output" style="background: #0f172a; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #a5b4fc; font-family: monospace;"></pre>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
