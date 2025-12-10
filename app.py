@@ -84,5 +84,4 @@ def predict():
         return jsonify({"error": f"Error processing image: {str(e)}"}), 500
 
 if __name__ == '__main__':
-    # Run on 0.0.0.0 to be accessible, debug=True for dev
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    app.run()
