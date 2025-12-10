@@ -22,11 +22,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code
 COPY . .
 
-# Expose the port the app runs on
-EXPOSE 5001
-
 # Define environment variable
 ENV FLASK_APP=app.py
 
 # Run the application using Gunicorn (production server)
-CMD ["gunicorn", "--bind", "0.0.0.0:5001", "app:app"]
+# Use shell form to allow variable expansion for $PORT
+CMD gunicorn --bind 0.0.0.0:$PORT app:app
